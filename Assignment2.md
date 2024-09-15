@@ -33,10 +33,8 @@ In Jesper Lowgren’s video *Solution vs Enterprise Architecture Tutorial*, he des
 
 ---
 
-# Answer1 
+# Answer 1 
 Enterprise Architecture (EA) and Solution Architecture (SA).
-
-## Main Differences
 
 ### 1. Scope and Focus
 - **Enterprise Architecture (EA):**
@@ -77,8 +75,8 @@ SA ensures that the solution fits within the EA framework and meets specific bus
 
 ___
 
-# Answer2
-## Key Points from Stefan Tilkov's Video
+# Answer 2
+
 
 1. **Teams as Core Components:** 
    - Teams are fundamental to the success of modern architectural practices. The architecture should be designed with the capabilities, strengths, and communication styles 
@@ -119,7 +117,7 @@ in order to convey ideas to one another. Overall, the structure and dynamics of 
 
 
 ___
-# Answer3 
+# Answer 3 
 
 He argues that while decentralization is important for agility and innovation, some functions and responsibilities are better handled centrally. 
 
@@ -151,3 +149,16 @@ and more innovative solutions.
 
 - **Scalability:** Centralization allows organizations to scale their operations more effectively. A centralized function can adapt and grow 
 in response to changing demands without needing to reconfigure multiple decentralized teams.
+
+---
+
+# Answer 4 and 5
+He talks about traditional monolithic enterprices vs modern enterprice architecture and he gives a rough outline of how that transition occured. 
+Some big and old enterprices, using legacy software and systems, might have a harder time comverting to microservice oriented architecture. 
+These things take time and some services and teams are being developed, but much of the enterprise is still monolithic in nature.
+
+continuous conversation:
+instead of phase based review, continuous conversations allows for designing and architecting while the development is ongoing. Teams or members of teams, 
+can reach out and talk to dedicated architects about design etc. Adding new services could introduce unwanted complexity and its worth discussing 
+wether or not to invest in new services or add features to existing services. This is why the architec role is valueable, it helps guide teams
+in designing optimal software. In terms of the devops loop, he says the Continuous conversation slots in perfectly.
