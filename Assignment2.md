@@ -171,13 +171,16 @@ chain is operating as efficiently as possible.In terms of the devops loop, he sa
 
 
 # Answer 6
-Messaging
-Message Channel
-Message
-Pipes and Filters
-Message Router
-Message Translator
-Message Endpoint
+Messaging is a key pattern in EI work. Almost all system will need to interact/communicate in some way and messaging is central to facilitate that.
+
+```mermaid
+graph TD;
+    A[Start] --> B[Step 1];
+    B --> C{Decision?};
+    C -->|Yes| D[Action 1];
+    C -->|No| E[Action 2];
+    D --> F[End];
+    E --> F[End];
 
 # Integration Patterns for Messaging
 
