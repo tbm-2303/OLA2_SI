@@ -151,7 +151,7 @@ which can reduce delays caused by coordination among multiple teams.
 - **Enhanced Focus:** Centralized teams can focus on specific areas without the distractions of multiple projects, leading to deeper expertise 
 and more innovative solutions.
 
-- **Scalability:** Centralization allows organizations to scale their operations more effectively. A centralized function can adapt and grow 
+- **Scalability:** Centralization allows organizations to scale operations more effectively. A centralized function can adapt and grow 
 in response to changing demands without needing to reconfigure multiple decentralized teams.
 
 ---
@@ -162,7 +162,7 @@ Some big and old enterprices, using legacy software and systems, might have a ha
 These things take time and some services and teams are being developed, but much of the enterprise is still monolithic in nature.
 
 continuous conversation:
-instead of phase based review, continuous conversations allows for designing and architecting during development. Teams 
+Instead of phase based review, continuous conversations allows for designing and architecting during development. Teams 
 can reach out and talk to dedicated architects. Adding new services could introduce unwanted complexity and it could be worth discussing 
 wether or not to invest in new services or find ways to combine features with existing services. They are there to help ensure the business value
 chain is operating as efficiently as possible.In terms of the devops loop, he says the Continuous conversation slots in perfectly.
@@ -172,15 +172,51 @@ chain is operating as efficiently as possible.In terms of the devops loop, he sa
 
 # Answer 6
 Messaging is a key pattern in EI work. Almost all system will need to interact/communicate in some way and messaging is central to facilitate that.
+Applications communicate by exchange of messages, each application connects to a common messaging system.
+There are 4 major integrations 'styles'.
+1. File Tranfer 
+2. Shared Database
+3. Remote Procedure Invocation
+4. Messaging. 
 
-```mermaid
-graph TD;
-    A[Start] --> B[Step 1];
-    B --> C{Decision?};
-    C -->|Yes| D[Action 1];
-    C -->|No| E[Action 2];
-    D --> F[End];
-    E --> F[End];
+We will be focusing on Messaging for this course. But messaging comes in quite a few diffenent patterns. 
+Messaging allows applications to communicate without coupling them together, or to decouple already coupled applications. 
+To allow this communication to take place, the applications connects to a single common Messaging system. Now, there are
+different kinds of messaging systems out there. Most of the messaging systems share terminology and also 
+some basic messaging concepts. 
+
+- 1. Messaging System:
+Each application connect to a Messaging system 
+- 2. Channel: 
+Messaging applications transmit data through a Message Channel, a virtual pipe that connects a sender to a receiver. 
+- 3. Message:
+A Message is an atomic packet of data that can be transmitted on a channel. Thus to transmit data, an application must 
+break the data into one or more packets, wrap each packet as a message, and then send the message on a channel.
+- 4. Pipes and filters: Sometimes, actions need to preformed on the meassage after sending but before delivery. 
+Using channels, the data may pass through one a more filters before being delivered. The pipes and filter pattern
+takes use of the channel architecture in order to chain processing steps together. 
+- 5. Routing:
+In a large enterprise with numerous applications and channels to connect them, a message may have to go through 
+several channels to reach its final destination. The route a message must follow may be so complex that the original 
+sender does not know what channel will get the message to the final receiver. Instead, the original sender sends the message to a 
+Message Router, an application component and filter in the pipes-and-filters architecture, which will determine how to navigate the 
+channel topology and direct the message to the final receiver, or at least to the next router.
+- 6. translator: Various applications may not agree on the format for the same conceptual data; the sender formats 
+the message one way, yet the receiver expects it to be formatted another way. To reconcile this, 
+the message must go through an intermediate filter, a Message Translator, that converts the message from one format to another.
+- 7. endpoint application: An application does not have some built-in capability to interface with a messaging system. 
+Rather, it must contain a layer of code that knows both how the application works and how the messaging system works, 
+bridging the two so that they work together. This bridge code is a set of coordinated Message Endpoints that enable the
+application to send and receive messages.
+
+These are the core concepts behind messaging. Now within each of these areas, there are MANY different techniques and types of solutions. 
+For example: Routing can be done in a number of different ways. It can be done using a central message broker. This is sometimes reffered to as hub-and-spoke architectural style.
+The message broker architecture style is slightly more comprehensive and has a larger scope, compared to some of the other patterns in messaging.
+Internally message broker architecture pattern makes use of many of the design patterns from routing. 
+
+sub/pub: central message broker mediate communication between publisher and subsciber. (many use cases. destributing messages across services in your enterprise)
+point to point: messages is send to a queue, the broker holds the message ultil comsumed by a single consumer. then its removed from the queue.(payment transactions)
+
 
 # Integration Patterns for Messaging
 
@@ -221,6 +257,46 @@ In a search engine, when a user submits a query, the search request can be sent 
 simultaneously. Each service processes the query and returns results, which are then aggregated to present a comprehensive search result to the user.
 
 
-# Answer 7 
-- differences between ‘messaging’ and ‘conversation’ architecture
-- difference between pub-sub and subscribe-notify
+# Answer 7  and 8
+ideas of conversations in messaging architecture
+- Differences between ‘messaging’ and ‘conversation’ architecture:
+Architecture tries to model the world. In the case of enterprise architecture, it tries to model the software world of your enterprise. Now, in terms of enterprise integration, 
+the main focus of the book was messaging as an architecture model and all the design pattern involved in that. So the authors were looking at the message as the central element
+and building a comprehensive architecture structure, patterns and language around that. By nature of looking at the message in a zoomed in way, we are not capturing the entire conversation 
+and history of messages between services. In the messaging paradime, error handling becomes very tricky, since we are talking about mostly stateless components. This
+is, as we know, good for decoupling services but makes error handling very tricky.
+- Difference between pub-sub and subscribe-notify
+When we take into account the 'conversation' architecture aspects, new types of design question arises. Now we are suddenly talking about subscriptions in the context of time.
+Since conversation is not a one time message, but many messages over time, the whole design architecture changes. So many new patterns arises to tackle the design problems 
+of the conversation architecture.
+
+core principles for patterns to be useful:
+- recurring: A pattern should give a  solution that can be applied in various situations. It should be general enough to be used in different contexts, but specific enough to 
+solve a particular problem.
+- teach why and how: A pattern should give a clear desciption of the problem and solution. This includes explaining how and why a pattern is designed the way it is. 
+- language: A design pattern rarely works alone, but in conjunction with other patterns, as such a common language is crucial for a good design architecture. 
+- facilitate human to human communication: They are there for us to use them, not for then systems we build with the patterns. Therefore they should be designed and documented 
+in ways that humans can digest and understand. This means no unnecessary complexities. 
+
+
+
+# Answer 9
+- A:
+Alligning value, people and technology  - Bilateral alignments
+- B:
+Better value sooner, safer and happier - De-duplication standardisation cost reduction
+- C:
+Continuous conversational governance - Phase-gated document-led adversarial governance
+- D:
+Devops at enterprise scale - change not run, dev not ops, project not product
+- E:
+Evolutionary enterprise architecture - entropy + big bang improvements
+
+The strangler pattern is a software design for modernization of legacy applications. It stand in contrast to big bang approuch where a complete overhal of the system is designed 
+and implemented all at once. Many different problem with legacy application can make the strangler pattern much more suitable option. Re-desingning and implementing a whole new modern
+system for the application comes with many risks and problems. Maybe the application is crucial for the day-to-day operation of the company or maybe the legacy application is so big
+and comprehensive, that as a matter of time and scale it can only be done incrementally.
+# Answer 10
+3 core diagrams to describe an architecture
+- solution overview
+- 
