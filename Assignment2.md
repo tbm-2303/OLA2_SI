@@ -1,3 +1,7 @@
+links: 
+- https://www.enterpriseintegrationpatterns.com/index.html 
+
+
 # Questions on Enterprise and Solution Architecture
 
 ## Q1
@@ -158,7 +162,62 @@ Some big and old enterprices, using legacy software and systems, might have a ha
 These things take time and some services and teams are being developed, but much of the enterprise is still monolithic in nature.
 
 continuous conversation:
-instead of phase based review, continuous conversations allows for designing and architecting while the development is ongoing. Teams or members of teams, 
-can reach out and talk to dedicated architects about design etc. Adding new services could introduce unwanted complexity and its worth discussing 
-wether or not to invest in new services or add features to existing services. This is why the architec role is valueable, it helps guide teams
-in designing optimal software. In terms of the devops loop, he says the Continuous conversation slots in perfectly.
+instead of phase based review, continuous conversations allows for designing and architecting during development. Teams 
+can reach out and talk to dedicated architects. Adding new services could introduce unwanted complexity and it could be worth discussing 
+wether or not to invest in new services or find ways to combine features with existing services. They are there to help ensure the business value
+chain is operating as efficiently as possible.In terms of the devops loop, he says the Continuous conversation slots in perfectly.
+
+
+
+
+# Answer 6
+Messaging
+Message Channel
+Message
+Pipes and Filters
+Message Router
+Message Translator
+Message Endpoint
+
+# Integration Patterns for Messaging
+
+## 1. Pipes and Filters
+The Pipes and Filters pattern is a method for processing data streams where each filter processes the data and passes the results to the next filter through a pipe. 
+This pattern is highly modular, allowing independent filters to be reused and maintained separately.
+Usecase:
+In a data analytics system, raw data is ingested from various sources (e.g., sensors, logs) and passed through multiple filters that perform transformations 
+(e.g., cleaning, aggregating, enriching). Each filter processes the data independently, and the final output can be stored in a database or sent to a reporting tool.
+
+## 2. Request-Reply
+The Request-Reply pattern is a synchronous messaging pattern where a sender sends a request message and waits for a corresponding reply. 
+This pattern is commonly used in client-server interactions.
+Usecase:
+In a web application, a client (such as a browser) sends a request to a server (e.g., for user authentication). The server processes the request and sends back a response 
+indicating whether the authentication was successful or not. This synchronous interaction ensures that the client receives the necessary information before proceeding.
+
+## 3. Publish-Subscribe
+The Publish-Subscribe pattern allows messages to be sent from publishers to multiple subscribers without the publisher needing to know who the subscribers are. 
+This pattern decouples the message producers from the consumers, promoting scalability and flexibility.
+Usecase:
+In an e-commerce application, when a new product is added to the catalog, a publish-subscribe mechanism can notify multiple subscribers, 
+such as inventory management, pricing services, and customer notification systems, ensuring that all relevant systems are updated without direct dependencies.
+
+## 4. Message Queue
+The Message Queue pattern uses a queue to store messages that need to be processed asynchronously. Producers send messages to the queue, and consumers read 
+and process those messages at their own pace, allowing for decoupled communication.
+Usecase:
+In an online retail platform, when a customer places an order, the order details are sent to a message queue. Various consumers (e.g., inventory service, 
+payment service, shipping service) pull messages from the queue to handle the order fulfillment process. This approach ensures that the system can handle 
+varying loads without losing messages.
+
+## 5. Scatter-Gather
+The Scatter-Gather pattern involves sending a request to multiple services or components in parallel (scatter) and collecting the results (gather) to provide a unified response. 
+This pattern is useful for aggregating responses from multiple sources.
+Usecase:
+In a search engine, when a user submits a query, the search request can be sent to multiple data sources or microservices (e.g., product database, user reviews, external APIs) 
+simultaneously. Each service processes the query and returns results, which are then aggregated to present a comprehensive search result to the user.
+
+
+# Answer 7 
+- differences between ‘messaging’ and ‘conversation’ architecture
+- difference between pub-sub and subscribe-notify
